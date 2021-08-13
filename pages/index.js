@@ -1,14 +1,36 @@
-const HomePage = ({ title, description, image }) => 
-(<div>title: {title} / {description} / {image}</div>)
+const HomePage = ({ title, description, image, url }) => (
+  <>
+    <Head>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+      <title>{title}</title>
+      <meta name="description" content={description} />
+      <meta property="og:description" content={description} />
+      <meta name="twitter:description" content={description} />
+      <meta name="og:image" property="og:image" content={image} />
+      <meta name="twitter:image" content={image} />
+      <meta property="og:title" content={title} />
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="Bookmate Journal" />
+      <meta property="og:url" content={url} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="Bookmate Journal" />
+      <meta name="twitter:creator" content="Bookmate Journal" />
+      <meta name="twitter:title" content={title} />
+      <link rel="canonical" href={url} />
+    </Head>
+    <div>Грузим!</div>
+  </>
+)
 
 export async function getServerSideProps({ query }) {
-  const { image = "", title = "", description = "" } = query
-  console.log(query)
+  const { image = "", title = "", description = "", url = "" } = query
   return {
     props: {
       title,
       description,
       image,
+      url,
     },
   }
 }
